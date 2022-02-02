@@ -24,8 +24,10 @@ class Spotify
         return $this->client->me();
     }
 
-    public function findArtists(string $query)
+    public function findArtists(string $query, int $limit = 20)
     {
-        return $this->client->search($query, "artist");
+        return $this->client->search($query, "artist", [
+            "limit" => $limit,
+        ]);
     }
 }

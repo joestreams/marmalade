@@ -1,8 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Api\Spotify\Search\ArtistsController;
+use App\Http\Controllers\Api\Spotify\Search\ArtistsController as SpotifyArtistsController;
 use App\Http\Controllers\Api\LogoutController;
+use App\Http\Controllers\Api\ArtistsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,5 +19,7 @@ use App\Http\Controllers\Api\LogoutController;
 Route::middleware('auth')->group(function () {
     Route::post('/logout', LogoutController::class)->middleware('auth');
 
-    Route::get('/spotify/search/artists', ArtistsController::class);
+    Route::get('/spotify/search/artists', SpotifyArtistsController::class);
+
+    Route::apiResource('/artists', ArtistsController::class);
 });

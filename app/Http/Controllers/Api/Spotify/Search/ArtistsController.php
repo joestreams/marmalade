@@ -18,6 +18,6 @@ class ArtistsController extends Controller
     {
         $spotify = new Spotify($request->user());
 
-        return $spotify->findArtists($request->query("q"))->artists->items;
+        return $spotify->findArtists($request->query("q"), 5)->artists->items;
     }
 }
