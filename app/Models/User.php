@@ -56,7 +56,7 @@ class User extends Authenticatable
     public function ownedArtists()
     {
         return $this->belongsToMany(Artist::class)
-            ->wherePivot('is_owned', true)
+            ->wherePivot('is_owner', true)
             ->withTimestamps();
     }
 }

@@ -48,7 +48,9 @@ class ArtistsController extends Controller
 
         $user->artists()->attach($artistRecord, ['is_owner' => true]);
 
-        return $artistRecord;
+        $user->load('ownedArtists');
+
+        return $user;
     }
 
     /**

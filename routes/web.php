@@ -16,12 +16,6 @@ use App\Models\User;
 |
 */
 
-Route::get('/', function () {
-    $user = request()->user();
-
-    return view('welcome')->with(['user' => $user]);
-});
-
 Route::get('/auth/{provider}/redirect', function (string $provider) {
     $socialite = Socialite::driver($provider);
 
@@ -64,3 +58,13 @@ Route::get('/auth/{provider}/callback', function (string $provider) {
 
     return redirect('/');
 });
+
+Route::get('/{path?}', function () {
+    $user = request()->user();
+
+    if ($user) {
+        $user->load('ownedArtists');
+    }
+
+    return view('welcome')->with(['user' => $user]);
+})->where('path', '.*');
